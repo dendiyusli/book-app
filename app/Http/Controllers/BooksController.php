@@ -6,7 +6,10 @@ class BooksController
 {
     public function index()
     {
-        return [];
+        return [
+            ['Judul' => 'Apa Aja'],
+            ['Judul' => 'Boleh Aja']
+        ];
     }
 }
 
