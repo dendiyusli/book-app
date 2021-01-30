@@ -3,15 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 class BooksController
 {
     public function index()
     {
-        // return [
-        //     ['Judul' => 'Apa Aja'],
-        //     ['Judul' => 'Boleh Aja']
-        // ];
         return Book::all();
     }
 
@@ -26,6 +23,19 @@ class BooksController
                 ]
             ], 404);
         }
+    }
+
+    public function store(Request $request)
+    {
+        try {
+            $book = Book::create($request->all());
+        } catch (\Exception $e) {
+            dd(get_class($e));
+        }
+
+        return response()->json([
+            'created' => true
+        ], 201);
     }
 }
 
