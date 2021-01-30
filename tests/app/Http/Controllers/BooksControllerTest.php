@@ -48,8 +48,15 @@ class BooksControllerTest extends TestCase
     /** @test **/
     public function show_route_should_not_match_an_invalid_route()
     {
-        $this->markTestIncomplete('Pending Test');
+        $this->get('/books/apa-aja');
+
+        $this->assertDoesNotMatchRegularExpression(
+            '/Buku tidak ditemukan/',
+            $this->response->getContent(),
+            'BooksController@show route matching when it should not.'
+        );
     }
+
 }
 
 ?>
