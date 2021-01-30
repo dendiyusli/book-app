@@ -32,7 +32,9 @@ class BooksController
         return response()->json([
             'created' => true,
             'data' => $book
-        ], 201);
+        ], 201, [
+            'Location' => route('books.show', ['id' => $book->id])
+        ]);
     }
 }
 

@@ -74,7 +74,15 @@ class BooksControllerTest extends TestCase
     /** @test **/
     public function store_should_respond_with_a_201_and_location_header_when_successful()
     {
-        $this->markTestIncomplete('pending');
+        $this->post('/books', [
+            'judul' => 'It is You',
+            'deskripsi' => 'Buku Bagus',
+            'pengarang' => 'Dendi Yusli'
+        ]);
+
+        $this
+            ->seeStatusCode(201)
+            ->seeHeaderWithRegExp('Location', '#/books/[\d]+$#');
     }
 
 }
